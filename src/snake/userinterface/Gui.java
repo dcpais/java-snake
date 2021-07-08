@@ -21,7 +21,7 @@ public class Gui {
     public static int WINDOW_X = 520;
     public static int WINDOW_Y = 560;
     public static int BOARD_PADDING = 20;
-    public static final int NUM_CELLS = 19;
+    public static final int NUM_CELLS = 15;
     public static int CELL_WIDTH = (WINDOW_X - 2 * BOARD_PADDING) / NUM_CELLS;
 
     //COLOURS
