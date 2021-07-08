@@ -1,16 +1,13 @@
-package sample;
+package snake;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.userinterface.Gui;
+import snake.userinterface.Gui;
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Gui userInterface = new Gui(primaryStage);
     }
 
