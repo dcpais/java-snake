@@ -1,20 +1,16 @@
 package snake.userinterface;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import snake.enums.Orientation;
 
-public class Gui {
-
+public class Gui implements EventHandler<KeyEvent> {
 
     //DIMENSIONS
     private final double SCALE = 1;
@@ -33,21 +29,33 @@ public class Gui {
     private VBox viewContainer;
     private Board board;
     private StatusBar statusBar;
+    private Orientation orientation;
+    private Snake snake;
 
     //CONSTRUCTOR
     public Gui(Stage primaryStage) {
         this.stage = primaryStage;
         this.root = new Group();
+        this.orientation = Orientation.DOWN;
         setupInterface();
     }
 
     //MEMBER FUNCTIONS
+    public void move(Orientation orientation) {
+        snake.move(orientation);
+    }
+
     private void setupInterface() {
         setDimensions();
         setPartitions();
         initStatusBar();
         initBoard();
+        initSnake();
         stage.show();
+    }
+
+    private void initSnake() {
+        this.snake = new Snake(board.getBoard());
     }
 
     private void initStatusBar() {
@@ -71,6 +79,7 @@ public class Gui {
     private void setDimensions() {
         Scene scene = new Scene(this.root, WINDOW_X, WINDOW_Y);
         scene.setFill(BACKGROUND_COLOR);
+        scene.setOnKeyPressed(this);
         stage.setTitle("~Snek~");
         stage.setScene(scene);
 
@@ -78,5 +87,19 @@ public class Gui {
         WINDOW_X = (int) (WINDOW_X * SCALE);
         WINDOW_Y = (int) (WINDOW_Y * SCALE);
         CELL_WIDTH = (int) (CELL_WIDTH * SCALE);
+    }
+
+    @Override
+    public void handle(KeyEvent event) {
+        switch (event.getCode()) {
+            case UP: orientation = Orientation.UP; break;
+            case DOWN: orientation = Orientation.DOWN; break;
+            case LEFT: orientation = Orientation.LEFT; break;
+            case RIGHT: orientation = Orientation.RIGHT; break;
+        }
+    }
+
+    public Orientation getOrientation() {
+        return orientation;
     }
 }
