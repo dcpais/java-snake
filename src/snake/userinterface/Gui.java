@@ -8,7 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import snake.enums.Orientation;
+import snake.util.Orientation;
 
 public class Gui implements EventHandler<KeyEvent> {
 

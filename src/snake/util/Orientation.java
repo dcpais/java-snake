@@ -1,4 +1,4 @@
-package snake.enums;
+package snake.util;
 
 public enum Orientation {
     UP,

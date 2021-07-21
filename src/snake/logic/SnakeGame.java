@@ -1,6 +1,6 @@
 package snake.logic;
 
-import snake.enums.Orientation;
+import snake.util.Orientation;
 import snake.userinterface.Gui;
 
 public class SnakeGame {

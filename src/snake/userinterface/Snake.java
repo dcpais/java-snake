@@ -5,7 +5,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import snake.enums.Orientation;
+import snake.util.Orientation;
+import snake.util.structs.LinkedList;
+import snake.util.structs.Node;
 
 import java.util.ArrayList;
 
@@ -15,14 +17,13 @@ public class Snake {
     private final Color bodyColour = Color.rgb(83, 112, 224);
 
     //MEMBER VARIABLES
-    private int length;
     private TilePane overlay;
-    private ArrayList<Rectangle> body;
+    private LinkedList body;
 
     //CONSTRUCTOR
     public Snake(StackPane master) {
         this.overlay = new TilePane();
-        this.body = new ArrayList<>();
+        this.body = new LinkedList();
         createSnake(master);
     }
 
@@ -41,6 +42,9 @@ public class Snake {
     private void appendToBody(int x, int y) {
         Rectangle squareToAppend = new Rectangle(x, y, Gui.CELL_WIDTH, Gui.CELL_WIDTH);
         squareToAppend.setFill(bodyColour);
-        body.add(squareToAppend);
+        Node bodyPart = new Node(squareToAppend);
+        body.addNode(bodyPart);
+        overlay.getChildren().add(squareToAppend);
     }
+
 }
